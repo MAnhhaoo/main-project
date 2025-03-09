@@ -1,0 +1,90 @@
+/*--------------------------------------------------------------
+
+  Template Name: Golden Bee Group Ecommerce Responsive Bootstrap Template
+  Description: This is html5 template
+  Author: codecarnival
+  Version: 1.0
+  Design and Developed by: codecarnival
+
+Note: This is the file where you can add your custom styles to change the look of the theme. But don't modify "style.css" file.
+
+---------------------------------------------------------------*/
+
+/* ----------------------------------------------------
+	You can put your custom css code here: 
+-------------------------------------------------------*/
+.error-message {color: red};
+
+.product-img a img {
+  height: 300px;
+  width: 270px;
+  object-fit: cover;
+}
+
+.logo {
+    text-align: right;
+}
+
+.widget.widget-product .product-img__image {
+    width: 60px;
+    height: 80px;
+}
+
+ul.top-cart-inner-wrapper {
+    width: 40rem;
+}
+
+/* Code here */
+
+.box-banner-about{
+  background-color: #ff7f00;
+}
+.change-ul .ul-about{
+  background-color: #ff7f00;
+}
+
+table#table-history-order {
+  width: 100%!important;
+}
+
+#table-history-order_filter label{
+    width: 100%;
+}
+
+#table-history-order_filter .form-control {
+  width: 80%;
+}
+
+#liveToast {
+  font-size: 1.4rem;
+  margin-top: 6rem;
+}
+
+/* comment product */
+#comment-wrapper .message-box {
+  margin-top: 8rem;
+}
+
+/* Review products */
+
+#reviewModal.modal {
+  margin-top: 9rem;
+}
+
+.recent-blog {
+
+}
+
+.recent-blog__item {
+
+}
+
+.recent-blog__item img.recent-blog__img-thumb {
+  width: 8rem;
+  height: 8rem;
+  object-fit: cover;
+}
+
+.product-best-sell img {
+  height: 10rem;
+}
