@@ -80,18 +80,17 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title text-start ">
-                        <h2 class="uppercase">team member</h2>
+                        <h2  class="uppercase ">team member</h2>
                         <h6 class="mb-40"></h6>
                     </div>
                     <div class="active-team-member section">
                         <!-- team-member start -->
-                        <div class="team-member-item">
+                        <div class=" team-member-item">
                             <div class="team-member box-shadow">
                                 <div class="team-member-photo">
-                                    <img src="assets/img/team/nhatsang-img.png" alt="">
                                 </div>
                                 <div class="team-member-info pt-20">
-                                    <h5 class="member-name"><a href="#!">Nhật Sang</a></h5>
+                                    <h5 class="member-name"><a href="#!">Anh Hào</a></h5>
                                     <p class="member-position">Leader</p>
                                     <p class="mb-20">Là người phụ trách quản lý công việc và phân chia các thành viên</p>
                                     <ul class="footer-social">
@@ -119,10 +118,41 @@
                         <div class="team-member-item">
                             <div class="team-member box-shadow">
                                 <div class="team-member-photo">
-                                    <img src="assets/img/team/minhdan-img.png" alt="">
+                                    <img src="../../../../uploads/hieu.jpg" alt="">
                                 </div>
                                 <div class="team-member-info pt-20">
-                                    <h5 class="member-name"><a href="#!">Minh Đan</a></h5>
+                                    <h5 class="member-name"><a href="#!">Trung Hiếu</a></h5>
+                                    <p class="member-position">Member</p>
+                                    <p class="mb-20">Phụ trách công việc thiết kế trang giao diện của The Phoner Store</p>
+                                    <ul class="footer-social">
+                                        <li>
+                                            <a class="facebook" href="#!" title="Facebook"><i
+                                                    class="zmdi zmdi-facebook"></i></a>
+                                        </li>
+                                        <li>
+                                            <a class="google-plus" href="#!" title="Google Plus"><i
+                                                    class="zmdi zmdi-google-plus"></i></a>
+                                        </li>
+                                        <li>
+                                            <a class="twitter" href="#!" title="Twitter"><i
+                                                    class="zmdi zmdi-twitter"></i></a>
+                                        </li>
+                                        <li>
+                                            <a class="rss" href="#!" title="RSS"><i class="zmdi zmdi-rss"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- team-member end -->
+                         <!-- team-member start -->
+                         <div class="team-member-item">
+                            <div class="team-member box-shadow">
+                                <div class="team-member-photo">
+                                    <img src="../../../../uploads/thyan.jpg" alt="">
+                                </div>
+                                <div class="team-member-info pt-20">
+                                    <h5 class="member-name"><a href="#!">Thy Ân</a></h5>
                                     <p class="member-position">Member</p>
                                     <p class="mb-20">Phụ trách công việc thiết kế trang giao diện của The Phoner Store</p>
                                     <ul class="footer-social">
@@ -150,10 +180,10 @@
                         <div class="team-member-item">
                             <div class="team-member box-shadow">
                                 <div class="team-member-photo">
-                                    <img src="assets/img/team/hoangtrung-img.png" alt="">
+                                    <img src="../../../../uploads/duc.jpg" alt="">
                                 </div>
                                 <div class="team-member-info pt-20">
-                                    <h5 class="member-name"><a href="#!">Hoàng Trung</a></h5>
+                                    <h5 class="member-name"><a href="#!">Thành Đức</a></h5>
                                     <p class="member-position">Member</p>
                                     <p class="mb-20">Là người phụ trách công việc thiết kế trang giao diện front-end</p>
                                     <ul class="footer-social">
@@ -181,10 +211,10 @@
                         <div class="team-member-item">
                             <div class="team-member box-shadow">
                                 <div class="team-member-photo">
-                                    <img src="assets/img/team/lamphoi-img.png" alt="">
+                                    <img src="../../../assets/img/team/kiet..png" alt="">
                                 </div>
                                 <div class="team-member-info pt-20">
-                                    <h5 class="member-name"><a href="#">Lam Phối</a></h5>
+                                    <h5 class="member-name"><a href="#">Anh Kiệt </a></h5>
                                     <p class="member-position">Member</p>
                                     <p class="mb-20">Là người chịu trách nhiệm về back-end, thiết kế database</p>
                                     <ul class="footer-social">

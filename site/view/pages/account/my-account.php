@@ -15,7 +15,7 @@ if (isset($_SESSION['iduser'])) {
                     <div class="breadcrumbs-inner">
                         <h1 class="breadcrumbs-title">Tài khoản của tôi</h1>
                         <ul class="breadcrumb-list">
-                            <li><a href="index.html">Trang chủ</a></li>
+                            <li><a href="index.php">Trang chủ</a></li>
                             <li>Tài khoản của tôi</li>
                         </ul>
                     </div>
@@ -94,13 +94,13 @@ if (isset($_SESSION['iduser'])) {
                                                             <input type="text" name="sodienthoai"
                                                                 placeholder="Số điện thoại...">
                                                         </div>
-                                                        <div class="form-group">
+                                                        <!-- <div class="form-group">
                                                             <p class="error-message">
                                                                 <?php if (isset($error['company'])) {echo $error['company'];}?>
                                                             </p>
                                                             <input type="text" name="companyname"
                                                                 placeholder="Tên công ty...">
-                                                        </div>
+                                                        </div> -->
                                                         <!-- <div class="form-group">
                                                             <p class="error-message">
 

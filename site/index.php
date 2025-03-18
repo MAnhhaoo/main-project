@@ -791,7 +791,7 @@ if (isset($_GET['act'])) {
                 $ho_ten = $_POST['ho_ten'];
                 $diachi = $_POST['diachi'];
                 $sodienthoai = $_POST['sodienthoai'];
-                $congty = $_POST['companyname'];
+                $congty = $_POST['congty'];
                 $target_file = basename($_FILES["hinh_anh"]["name"]);
                 // echo $target_file;
                 move_uploaded_file($_FILES["hinh_anh"]["tmp_name"], $target_file);

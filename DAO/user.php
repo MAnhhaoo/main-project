@@ -149,3 +149,5 @@ function shipping_select_by_iduser($iduser)
     $sql = "SELECT * FROM tbl_shipping WHERE id_user=?";
     return pdo_query_one($sql, $iduser);
 }
+
+

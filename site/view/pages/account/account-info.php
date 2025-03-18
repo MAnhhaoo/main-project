@@ -15,7 +15,7 @@ if (isset($_SESSION['iduser'])) {
 $imgUrl = substr($user['hinh_anh'], 0, 4) == "http" ? $user['hinh_anh'] : "../uploads/" . $user['hinh_anh'];
 
 ?>
-<img src="<?php echo $imgUrl ?>" alt="fsdf" style="width: 8rem; height: 8rem; object-fit: cover; border-radius: 50%"
+<img src="<?php echo $user['congty']; ?>" alt="fsdf" style="width: 8rem; height: 8rem; object-fit: cover; border-radius: 50%"
     class="account-img">
 <h5 class="mt-3">Thông tin tài khoản: </h5>
 <ul>
@@ -28,9 +28,8 @@ $imgUrl = substr($user['hinh_anh'], 0, 4) == "http" ? $user['hinh_anh'] : "../up
     <li>
         Địa chỉ: <?php echo $user['diachi']; ?>
     </li>
-    <li>
-        Công ty: <?php echo $user['congty']; ?>
-    </li>
+   
+    
     <li>
         Điện thoại: <?php echo $user['sodienthoai']; ?>
     </li>
