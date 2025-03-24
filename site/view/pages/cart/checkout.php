@@ -7,7 +7,7 @@
                         <div class="breadcrumbs-inner">
                             <h1 class="breadcrumbs-title">Thanh toán</h1>
                             <ul class="breadcrumb-list">
-                                <li><a href="index.html">Trang chủ</a></li>
+                                <li><a href="index.php">Trang chủ</a></li>
                                 <li>Giỏ hàng</li>
                                 <li>Thanh toán</li>
                             </ul>

@@ -1,6 +1,6 @@
 
 
-function searchProducts(currentForm) {
+function searchProducts(event,currentForm) {
 
     event.preventDefault();
     console.log('current form: ', currentForm);
@@ -14,11 +14,11 @@ function searchProducts(currentForm) {
     url.searchParams.set('maxprice', "");
     url.searchParams.set('subcateid', "");
     url.searchParams.set('cateid', "");
-    url.searchParams.set('minprice', "");
-    url.searchParams.set('maxprice', "");
+    
     url.searchParams.set('page', 1);
     history.pushState({},'', url);
-    location.reload();
+    window.location.href = url.toString();
+
     // setTimeout(() => {
     //     console.log('keyup!!');
     // }, 1000);

@@ -203,16 +203,20 @@ foreach ($product_list as $item) {
     $avg_stars = avg_star_reviews_of_product($item['masanpham']);
     $avg_stars = $avg_stars !== null ? $avg_stars : 0; // Default to 0 if null
     $result_stars = renderStarRatings(round($avg_stars, 0));
-    foreach ($image_list as $image_item) {
+    $thumbnail = "../uploads/default-thumbnail.jpg"; // Ảnh mặc định
 
+    foreach ($image_list as $image_item) {
         if (substr($image_item, 0, 6) == "thumb-") {
-            // echo $image_item;
             $thumbnail = "../uploads/" . $image_item;
             break;
         }
-
     }
-
+    
+    // Nếu không tìm thấy thumbnail, lấy ảnh đầu tiên
+    if ($thumbnail == "../uploads/default-thumbnail.jpg" && !empty($image_list)) {
+        $thumbnail = "../uploads/" . $image_list[0];
+    }
+    
     # code...
     echo '
                                <div class="col-lg-4 col-md-6">
@@ -332,10 +336,15 @@ if ($current_page < $total_page && $total_page > 1) {
                 <div class="col-lg-3 order-lg-1 order-2">
                     <!-- widget-search -->
                     <aside class="widget-search mb-30">
-                        <form onsubmit="searchProducts(this)" id="searchForm" action="#">
-                            <input name="searchvalue" type="text" placeholder="Tìm kiếm ở đây...">
-                            <button type="submit"><i class="zmdi zmdi-search"></i></button>
-                        </form>
+                        <form action="./index.php?act=shop" method="GET">
+                                                <div class="top-search-box">
+                                                    <input type="hidden" name="act" value="shop">
+                                                    <input type="text" name="query" placeholder="Tìm kiếm sản phẩm...">
+                                                    <button name="" type="submit">
+                                                        <i class="zmdi zmdi-search"></i>
+                                                    </button>
+                                                </div>
+                                            </form>
                     </aside>
                     <?php if (isset($_SESSION['iduser'])): ?>
                     <aside class="widget widget-product box-shadow">

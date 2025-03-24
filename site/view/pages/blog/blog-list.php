@@ -7,7 +7,7 @@
                     <div class="breadcrumbs-inner">
                         <h1 class="breadcrumbs-title">Tất cả bài viết</h1>
                         <ul class="breadcrumb-list">
-                            <li><a href="index.html">Home</a></li>
+                            <li><a href="index.php">Home</a></li>
                             <li>Bài viết</li>
                             <li>Danh sách bài viết</li>
                         </ul>

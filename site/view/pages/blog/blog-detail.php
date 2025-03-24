@@ -7,8 +7,8 @@
                     <div class="breadcrumbs-inner">
                         <h1 class="breadcrumbs-title">Bài viết chi tiết</h1>
                         <ul class="breadcrumb-list">
-                            <li><a href="index.html">Trang chủ</a></li>
-                            <li><a href="index.html">Bài viết</a></li>
+                            <li><a href="index.php">Trang chủ</a></li>
+                            <li><a href="index.php">Bài viết</a></li>
                             <li>Bài viết chi tiết</li>
                         </ul>
                     </div>

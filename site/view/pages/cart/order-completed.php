@@ -22,7 +22,7 @@ if (isset($iddh)) {
                     <div class="breadcrumbs-inner">
                         <h1 class="breadcrumbs-title">Order</h1>
                         <ul class="breadcrumb-list">
-                            <li><a href="index.html">Home</a></li>
+                            <li><a href="index.php">Home</a></li>
                             <li>Order</li>
                         </ul>
                     </div>
