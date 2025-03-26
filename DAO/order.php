@@ -1,10 +1,12 @@
 <?php
+if (!function_exists('updateorderstatus')) {
 function updateorderstatus($iddh, $trangthai)
 {
     $sql = "UPDATE tbl_order set trangthai = ? where id = ?";
     $mess = pdo_execute($sql, $trangthai, $iddh);
     // echo $mess;
     return true;
+}
 }
 
 function update_order_reason_destroy($reason_content, $iddh)
@@ -225,3 +227,4 @@ function select_all_coupons()
     return pdo_query($sql);
 
 }
+

@@ -391,7 +391,7 @@ a {
 /* footer */
 
 .footer {
-    position: absolute;
+    position: fixed;
     left: 260px;
     right: 0;
     bottom: 0;

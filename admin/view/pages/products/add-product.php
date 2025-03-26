@@ -62,7 +62,7 @@
                             <label class="form-label">Giảm giá (Đơn vị % )</label>
                             <div class="row g-3">
                                 <div class="col-lg-12">
-                                    <input type="number" min="0" max="100" name="giam_gia" class="form-control"
+                                    <input type="text" min="0" max="100" name="giam_gia" class="form-control" value="0"
                                         placeholder="Vd: 5">
                                     <p class="error-message discount-error">
                                         <?php if (isset($error['discount'])) {
@@ -131,25 +131,16 @@ foreach ($cate_list as $cate_item) {
                             <!-- </div> -->
                         </div>
 
-                        <div class="col-12">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    Xuất bản lên website
-                                </label>
-
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <input type="submit" name="addproductbtn" class="btn btn-primary px-4"
-                                value="Nhập sản phẩm" />
-                            <button type="reset" class="btn btn-primary px-4">Xóa thông tin</button>
-                        </div>
-                    </form>
                 </div>
+                <div class="col-12">
+                    <input type="submit" name="addproductbtn" class="btn btn-primary px-4" value="Nhập sản phẩm" />
+                    <button type="reset" class="btn btn-primary px-4">Xóa thông tin</button>
+                </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 </div>
 <!--end row-->
 <?php
