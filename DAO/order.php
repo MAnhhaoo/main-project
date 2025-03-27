@@ -227,3 +227,4 @@ function select_all_coupons()
     return pdo_query($sql);
 
 }
+

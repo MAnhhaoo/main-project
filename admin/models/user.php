@@ -210,3 +210,4 @@ function updatepass($iduser, $newpass)
 
     $conn = null;
 }
+
