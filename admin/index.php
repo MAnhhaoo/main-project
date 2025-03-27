@@ -187,7 +187,7 @@ if (isset($_SESSION['idadmin'])) {
                     $tensp = $_POST['tensp'];
                     $ma_danhmuc = $_POST['ma_danhmuc'];
                     $id_dmphu = $_POST['id_dmphu'];
-                    $giam_gia = $_POST['giam_gia'];
+                    $giam_gia = isset($_POST['giam_gia']) && $_POST['giam_gia'] !== "" ? (int)$_POST['giam_gia'] : null;
                     $don_gia = $_POST['don_gia'];
                     $so_luong = $_POST['so_luong'];
                     // $view = $_POST['view'];
@@ -206,10 +206,6 @@ if (isset($_SESSION['idadmin'])) {
                         $error['cate'] = "Không để trống mã danh mục!";
                     }
 
-                    if (!is_numeric($id_dmphu)) {
-                        $error['subcate'] = "Không để trống mã danh mục phụ";
-                    }
-
                     if (empty($mo_ta)) {
                         $error['desc'] = "Không để trống mô tả sản phẩm";
                     }
@@ -220,15 +216,11 @@ if (isset($_SESSION['idadmin'])) {
 
                     if (empty($don_gia)) {
                         $error['price'] = "không để trống đơn giá";
-                    } else if ($don_gia < 0) {
-                        $error['price'] = "Đơn giá phải lớn hơn 0!";
                     }
 
-                    if (empty($giam_gia)) {
-                        $error['discount'] = "Không để trống giảm giá";
-                    } else if (!is_numeric($giam_gia)) {
-                        $error['discount'] = "Không để trống giảm giá";
-                    } else if ($giam_gia < 0 || $giam_gia > 100) {
+                    if($giam_gia === "" || $giam_gia === null) {
+                        $giam_gia = 0;
+                    } else if ($giam_gia = 0 || $giam_gia > 100) {
                         $error['discount'] = "Giảm giá phải lớn hơn hoặc bằng 0 và nhỏ hơn bằng 100";
                     }
 
@@ -1336,6 +1328,9 @@ if (isset($_SESSION['idadmin'])) {
                 }
                 include './view/pages/blogs/blog-cate.php';
                 break;
+                case 'top_user':
+                    include './view/pages/orders/topuser.php';
+                    break;
             default:
                 if (isset($_SESSION['idadmin'])) {
                     // include "./auth/login.php";

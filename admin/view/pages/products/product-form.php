@@ -170,13 +170,6 @@ foreach ($subcate_list as $subcate_item) {
         <!-- </div> -->
     </div>
 
-    <div class="col-12">
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-            <label class="form-check-label" for="flexCheckDefault">
-                Xuất bản lên website
-            </label>
-        </div>
     </div>
     <div class="col-12">
         <input id="product-action-btn" type="submit" name="addproductbtn" class="btn btn-primary px-4"

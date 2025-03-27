@@ -1,3 +1,4 @@
+
 <!--start sidebar -->
 <aside class="sidebar-wrapper" data-simplebar="true">
     <div class="sidebar-header">
@@ -52,7 +53,11 @@
         <ul class="">
             <li> <a href="index.php?act=orderlist"><i class="bi bi-circle"></i>Danh sách đơn hàng</a>
             </li>
+            <li>
+                <a href="index.php?act=top_user"><i class="bi bi-circle"></i>Top khách hàng</a>
+            </li>
         </ul>
+        
     </li>
     <li>
         <a href="javascript:;" class="has-arrow">

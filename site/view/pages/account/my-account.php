@@ -96,7 +96,7 @@ if (isset($_SESSION['iduser'])) {
                                                         </div>
                                                         <!-- <div class="form-group">
                                                             <p class="error-message">
-                                                                <?php if (isset($error['company'])) {echo $error['company'];}?>
+                                                               
                                                             </p>
                                                             <input type="text" name="companyname"
                                                                 placeholder="Tên công ty...">
@@ -118,7 +118,7 @@ if (isset($_SESSION['iduser'])) {
                                                         </div>
                                                         <div class="checkbox">
 
-                                                            <label class="mr-10">
+                                                            <!-- <label class="mr-10">
                                                                 <small>
                                                                     <input type="checkbox" name="signup">Tôi muốn đăng
                                                                     ký
@@ -135,7 +135,7 @@ if (isset($_SESSION['iduser'])) {
                                                                         sách
                                                                         bảo mật</a>
                                                                 </small>
-                                                            </label>
+                                                            </label> -->
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-md-6">

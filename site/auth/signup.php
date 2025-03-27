@@ -121,7 +121,7 @@ include "./auth-header.php";
                                     </div>
         <input class="form-control" placeholder="Mật khẩu" type="password" name="mat_khau" required >
         </div>
-
+<!-- 
         <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
@@ -130,7 +130,7 @@ include "./auth-header.php";
                                     </div>
                                     <input type="file" class="form-control" name="avatar" id="avatar" accept="image/*"  onchange="previewImage(event)">
 									<img id="preview" src="https://www.w3schools.com/w3images/avatar2.png" class="rounded-circle" height="70">
-                                </div>
+                                </div> -->
         
         <div class="input-group mb-3">
                                     <div class="input-group-prepend">

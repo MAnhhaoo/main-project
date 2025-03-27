@@ -7,7 +7,7 @@
                     <div class="breadcrumbs-inner">
                         <h1 class="breadcrumbs-title">Cửa hàng</h1>
                         <ul class="breadcrumb-list">
-                            <li><a href="index.html">Home </a></li>
+                            <li><a href="index.php">Home </a></li>
                             <li>Cửa hàng</li>
                         </ul>
                     </div>
@@ -43,7 +43,7 @@
                                 <!-- <li>Tìm kiếm: Tên sản phẩm</li> -->
                             </ul>
                             <!-- short-by -->
-                            <div class="short-by f-left text-center">
+                            <!-- <div class="short-by f-left text-center">
                                 <span>Lọc bởi :</span>
                                 <select onchange="filterProducts(this)">
                                     <option value="">Lọc sản phẩm ở đây</option>
@@ -67,7 +67,7 @@
 ?> value="mostview">
                                         Sản phẩm xem nhiều nhất</option>
                                 </select>
-                            </div>
+                            </div> -->
                             <!-- showing -->
                             <div class="showing f-right text-end">Kết quả tìm được :
                                 <span id="show-search-result">

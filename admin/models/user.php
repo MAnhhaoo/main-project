@@ -1,3 +1,4 @@
+
 <?php
 
 // Hàm lấy tất cả danh mục

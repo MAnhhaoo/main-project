@@ -289,9 +289,9 @@ if (isset($_GET['act'])) {
                 $sodienthoai = $_POST['phone'];
                 $ghichu = $_POST['ghichu'];
 
-                if (empty($ghichu)) {
-                    $error['ghichu'] = "Không để trống ghi chú!";
-                }
+                // if (empty($ghichu)) {
+                //     $error['ghichu'] = "Không để trống ghi chú!";
+                // }
 
                 if (empty($hoten)) {
                     $error['hoten'] = "Không để trống họ tên";
@@ -429,9 +429,9 @@ if (isset($_GET['act'])) {
                 $sodienthoai = $_POST['phone'];
                 $ghichu = $_POST['ghichu'];
 
-                if (empty($ghichu)) {
-                    $error['ghichu'] = "Không để trống ghi chú!";
-                }
+                // if (empty($ghichu)) {
+                //     $error['ghichu'] = "Không để trống ghi chú!";
+                // }
                 $pttt = "Thanh toán khi nhận hàng"; // Array[0,1,2,3] (hiện tại đang mặc định)
                 // Sinh ra mã đơn hàng
                 $madonhang = "THEPHONERSTORE" . random_int(2000, 9999999);
@@ -791,7 +791,7 @@ if (isset($_GET['act'])) {
                 $ho_ten = $_POST['ho_ten'];
                 $diachi = $_POST['diachi'];
                 $sodienthoai = $_POST['sodienthoai'];
-                $congty = $_POST['congty'];
+                // $congty = $_POST['congty'];
                 $target_file = basename($_FILES["hinh_anh"]["name"]);
                 // echo $target_file;
                 move_uploaded_file($_FILES["hinh_anh"]["tmp_name"], $target_file);
@@ -840,9 +840,9 @@ if (isset($_GET['act'])) {
                     $error['sodienthoai'] = "Định dạng số điện thoại không chính xác!";
                 }
 
-                if (empty($congty)) {
-                    $error['company'] = "Không để trống công ty!";
-                }
+                // if (empty($congty)) {
+                //     $error['company'] = "Không để trống công ty!";
+                // }
 
                 if (empty($diachi)) {
                     $error['diachi'] = "Không để trống địa chỉ";
@@ -851,7 +851,7 @@ if (isset($_GET['act'])) {
                 if (!$error) {
 
                     // echo 'Success!';
-                    $is_updated = user_update_info($_POST['iduser'], $ho_ten, $diachi, $sodienthoai, $kichhoat = 1, $target_file, $congty);
+                    $is_updated = user_update_info($_POST['iduser'], $ho_ten, $diachi, $sodienthoai, $kichhoat = 1, $target_file);
 
                     if ($is_updated) {
 

@@ -15,7 +15,7 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
 
     // var_dump($product);
     $cate_name = catename_select_by_id($product['ma_danhmuc'])['ten_danhmuc'];
-    $subcate_name = subcatename_select_by_id($product['id_dmphu'])['ten_danhmucphu'];
+    // $subcate_name = subcatename_select_by_id($product['id_dmphu'])['ten_danhmucphu'];
     #Thumbnail Image
     $image_list = explode(',', $product['images']);
     $price_format = number_format($product['don_gia']);
@@ -23,15 +23,12 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
     $old_price = number_format($product['don_gia']);
     $new_price = number_format($product['don_gia'] * (1 - $product['giam_gia'] / 100));
 
-    foreach ($image_list as $image_item) {
+   // Lấy danh sách ảnh
+$image_list = explode(',', $product['images']);
 
-        if (substr($image_item, 0, 6) == "thumb-") {
-            // echo $image_item;
-            $thumbnail = "../uploads/" . $image_item;
-            break;
-        }
+// Lấy ảnh đầu tiên trong danh sách
+$thumbnail = "../uploads/" . trim($image_list[0]); 
 
-    }
 
     ?>
 
@@ -87,7 +84,6 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
                                                 đã bán )</span>
                                         </h3>
                                         <h6 class="my-4">Thương hiệu: <?php echo $cate_name ?> </h6>
-                                        <h6 class="my-4">Dòng sản phẩm: <?php echo $subcate_name ?></h6>
                                         <h6 class="single-product__views">
                                             <span class="">(<?php echo $product['so_luot_xem'] ?> lượt
                                                 xem)</span>
@@ -169,8 +165,14 @@ if ($product['ton_kho'] > 0) {
                                                 <?php
 $avg_stars = avg_star_reviews_of_product($_GET['id']);
     // echo $avg_stars;
-    $result = renderStarRatings(round($avg_stars, 0));
+    if ($avg_stars !== null) {
+        $result = renderStarRatings(round($avg_stars, 0));
+    } else {
+        $result = renderStarRatings(0); // hoặc giá trị mặc định khác
+    }
     echo $result;
+    
+    
     ?>
                                                 <span class="text-black-5">(
                                                     <?php echo count_number_reviews_of_product($_GET['id']) ?> đã đánh
@@ -433,24 +435,34 @@ $showcomment = showcommentproduct($product_id);
                             <div class="active-related-product slick-arrow-2">
                                 <?php
 $relate_products = product_select_similar_cate($product['ma_danhmuc'], $product_id);
-    // var_dump($relate_products);
 
-    foreach ($relate_products as $product_item) {
+foreach ($relate_products as $product_item) {
+    // Kiểm tra và xử lý danh sách ảnh
+    $image_list = isset($product_item['images']) && !empty($product_item['images']) ? explode(',', $product_item['images']) : [];
+    
+    // Lấy thumbnail (hoặc ảnh mặc định nếu không có)
+    $thumbnail = !empty($image_list[0]) ? '../uploads/' . trim($image_list[0]) : 'path/to/default-image.jpg';
 
-        $image_list = explode(',', $product_item['images']);
-        $cate_name = catename_select_by_id($product_item['ma_danhmuc'])['ten_danhmuc'];
-        $thumbnail = getthumbnail($image_list);
-        // var_dump($thumbnail);
-        $old_price = number_format($product_item['don_gia']);
-        $new_price = number_format($product_item['don_gia'] * (1 - $product_item['giam_gia'] / 100));
-        $addcartfunc = "handleAddCart('addtocart', 'addcart')";
-        $addwishlistfunc = "handleAddCart('addtowishlist', 'addwishlist')";
-        $avg_stars = avg_star_reviews_of_product($product_item['masanpham']);
-        $result_stars = renderStarRatings(4.3, 0);
-        # code...
-        echo cardItem($product_item, $thumbnail, $addcartfunc, $addwishlistfunc, $cate_name, $price_format, $result_stars);
-    }
-    ?>
+    // Lấy tên danh mục
+    $cate_name = catename_select_by_id($product_item['ma_danhmuc'])['ten_danhmuc'];
+
+    // Xử lý giá sản phẩm
+    $old_price = number_format($product_item['don_gia']);
+    $new_price = number_format($product_item['don_gia'] * (1 - $product_item['giam_gia'] / 100));
+
+    // Các hàm xử lý giỏ hàng và wishlist
+    $addcartfunc = "handleAddCart('addtocart', 'addcart')";
+    $addwishlistfunc = "handleAddCart('addtowishlist', 'addwishlist')";
+
+    // Đánh giá sao
+    $avg_stars = avg_star_reviews_of_product($product_item['masanpham']);
+    $result_stars = renderStarRatings($avg_stars, 0);
+
+    // Render sản phẩm
+    echo cardItem($product_item, $thumbnail, $addcartfunc, $addwishlistfunc, $cate_name, $new_price, $result_stars);
+}
+?>
+
                             </div>
                         </div>
                     </div>

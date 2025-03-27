@@ -84,26 +84,27 @@
                         <div class="col-lg-6 col-md-6">
                             <div class="top-link clearfix">
                                 <ul class="link f-right top-header-menu">
-                                    <?php
+                                <?php
 if (isset($_SESSION['iduser'])) {
+    $ho_ten = isset($_SESSION['ho_ten']) ? $_SESSION['ho_ten'] : 'Người dùng';
     echo '
-                                            <li class="top-header-menu__item">
-                                                <a href="index.php?act=settingaccount">
-                                                    <i class="zmdi zmdi-account"></i>
-                                                    ' . $_SESSION['ho_ten'] . '
-                                                </a>
-                                                <ul class="top-header-menu__dropdown">
-                                                    <li><a href="./index.php?act=settingaccount">Quản lý tài khoản</a> </li>
-                                                    <li><a href="./index.php?act=settingaccount&view=history">Lịch sử đơn hàng</a> </li>
-                                                    <li><a href="./index.php?act=settingaccount&view=changepass">Thay đổi mật khẩu</a> </li>
-                                                    <li><a href="./index.php?act=settingaccount&view=shippingaddress">Địa chỉ gửi hàng</a> </li>
-                                                    <li><a href="./index.php?act=settingaccount&view=paymentmethod">Phương thức thanh toán</a> </li>
-                                                    <li><a href="./index.php?act=logout">Đăng xuất</a></li>
-                                                </ul>
-                                            </li>
-                                            ';
+        <li class="top-header-menu__item">
+            <a href="index.php?act=settingaccount">
+                <i class="zmdi zmdi-account"></i>
+                ' . htmlspecialchars($ho_ten) . '
+            </a>
+            <ul class="top-header-menu__dropdown">
+                <li><a href="./index.php?act=settingaccount">Quản lý tài khoản</a> </li>
+                <li><a href="./index.php?act=settingaccount&view=history">Lịch sử đơn hàng</a> </li>
+                <li><a href="./index.php?act=settingaccount&view=changepass">Thay đổi mật khẩu</a> </li>
+                <li><a href="./index.php?act=settingaccount&view=shippingaddress">Địa chỉ gửi hàng</a> </li>
+                <li><a href="./index.php?act=settingaccount&view=paymentmethod">Phương thức thanh toán</a> </li>
+                <li><a href="./index.php?act=logout">Đăng xuất</a></li>
+            </ul>
+        </li>';
 }
 ?>
+
 
                                     <li id="topWishlist" class="top-header-menu__item">
                                         <a href="index.php?act=wishlist">
