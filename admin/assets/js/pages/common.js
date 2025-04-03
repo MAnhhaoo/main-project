@@ -134,8 +134,6 @@ function callAjaxProducts() {
                     <th>Hình ảnh/ Tên sản phẩm </th>
                     <th>SL bán </th>
                     <th>Giá tiền </th>
-                    <th>Tồn kho </th>
-                    <th>Ngày nhập </th>
                     <th>Hành động </th>
                 </thead>
                 <tbody>
@@ -146,7 +144,6 @@ function callAjaxProducts() {
             var table = $('#table-warning-inventory-product').DataTable({
                 data: product_list,
                 retrieve: true,
-                // lengthChange: false,
                 buttons: [ 'copy', 'excel', 'pdf', 'print'],
                 "ordering":true,
             });

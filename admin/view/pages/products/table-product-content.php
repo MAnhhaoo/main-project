@@ -15,8 +15,6 @@ include "$ROOT_URL/global.php";
         <th>Hình ảnh/ Tên sản phẩm </th>
         <th>SL bán</th>
         <th>Giá tiền </th>
-        <th>Tồn kho </th>
-        <th>Ngày nhập </th>
         <th>Hành động </th>
     </thead>
     <tbody>
@@ -71,8 +69,6 @@ foreach ($product_list as $product_item) {
                                     </a>
                                 </td>
                                 <td><span>' . $product_item['don_gia'] . ' VND</span></td>
-                                <td><span class="badge rounded-pill bg-success">' . $product_item['ton_kho'] . '</span></td>
-                                <td><span>' . $product_item['ngay_nhap'] . '</span></td>
                                 <td>
                                     <div class="d-flex align-items-center gap-3 fs-6">
                                         <a href="javascript:viewDetail(' . $product_item['masanpham'] . ')" class="text-primary"

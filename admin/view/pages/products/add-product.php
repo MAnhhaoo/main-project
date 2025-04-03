@@ -36,8 +36,7 @@
                                 <?php if (isset($error['info'])) {
     echo $error['info'];
 }
-?>
-                            </p>
+?></p>
                         </div>
                         <div class="col-12">
                             <label class="form-label">Thêm hình ảnh (Có thể thêm nhiều hình ảnh )</label>
@@ -87,9 +86,6 @@
                         <div class="col-12 col-md-6">
                             <label class="form-label">Danh mục chính</label>
                             <select onchange="onSelectCate(this)" name="ma_danhmuc" class="form-select">
-                                <?php
-
-?>
                                 <?php
 $cate_list = cate_select_all();
 foreach ($cate_list as $cate_item) {

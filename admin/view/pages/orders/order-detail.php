@@ -377,9 +377,42 @@ foreach ($order_detail_list as $order_detail) {
             </div>
         </div>
         <!--end row-->
+        <div>
+            <a href="javascript:history.back()" class="btn btn-success back-btn">⬅ Quay Lại</a>
+        </div>
 
+        <style>
+        .back-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #28a745;
+            /* Màu xanh lá */
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .back-btn:hover {
+            background-color: #218838;
+            /* Màu đậm hơn khi hover23 */
+            transform: translateX(-3px);
+            /* Dịch chuyển nhẹ sang trái */
+            color: white;
+            /* Đảm bảo chữ vẫn trắng khi hover */
+        }
+
+        .back-btn:active {
+            background-color: #1e7e34;
+            /* Màu tối hơn khi nhấn */
+            transform: scale(0.98);
+            /* Thu nhỏ nhẹ khi nhấn */
+        }
+        </style>
     </div>
 </div>
+
 
 </main>
 <!--end page main-->

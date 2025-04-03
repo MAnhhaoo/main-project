@@ -62,3 +62,11 @@ function changeStatus(orderId) {
     });
     
 }
+function toggleDetails(userId) {
+    var detailsRow = document.getElementById("details-" + userId);
+    if (detailsRow.style.display === "none") {
+        detailsRow.style.display = "table-row";
+    } else {
+        detailsRow.style.display = "none";
+    }
+}
