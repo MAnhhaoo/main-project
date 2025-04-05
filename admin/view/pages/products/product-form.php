@@ -45,7 +45,7 @@ include $ROOT_URL . "/DAO/category.php";
             <?php if (isset($error['info'])) {
     echo $error['info'];
 }
-?>
+?></p>
     </div>
     <div id="image-input-group" class="col-12">
         <label class="form-label">Thêm hình ảnh</label>
@@ -91,7 +91,7 @@ include $ROOT_URL . "/DAO/category.php";
         <label class="form-label">Giảm giá</label>
         <div class="row g-3">
             <div class="col-lg-12">
-                <input type="number" name="giam_gia" class="form-control" placeholder="Giảm giá">
+                <input type="number" name="giam_gia" class="form-control" placeholder="Giảm giá"  value="<?php echo isset($_POST['giam_gia']) ? $_POST['giam_gia'] : 0; ?>">
                 <p class="error-message discount-error">
                     <?php if (isset($error['discount'])) {
     echo $error['discount'];

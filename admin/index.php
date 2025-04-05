@@ -147,9 +147,7 @@ if (isset($_SESSION['idadmin'])) {
                     }
             
                     if (!$error) {
-                        $is_updated = product_update($idproduct, $tensp, $don_gia, $so_luong, $image_list, $giam_gia, $dac_biet, $date_create, $mo_ta, $ma_danhmuc, $id_dmphu, $thong_tin, $promote);
-
-                        if ($is_updated) {
+                        $is_updated = product_update($idproduct, $tensp, $don_gia, $so_luong, $image_list, $giam_gia, $dac_biet, $date_create, $mo_ta, $ma_danhmuc, $id_dmphu, $information, $promote);                        if ($is_updated) {
                             $result = array(
                                 "status" => 1,
                                 "content" => "Cập nhật sản phẩm thành công!",
@@ -164,7 +162,6 @@ if (isset($_SESSION['idadmin'])) {
                         );
                         echo json_encode($result);
                     }
-                    
                     break;
 
             case 'addproduct':
