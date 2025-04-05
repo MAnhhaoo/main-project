@@ -106,8 +106,8 @@ if (isset($_SESSION['idadmin'])) {
                     $don_gia = $_POST['don_gia'];
                     $so_luong = $_POST['so_luong'];
                     // $view = $_POST['view'];
-                    $mo_ta = $_POST['mo_ta'];
-                    $thong_tin = $_POST['thong_tin'];
+                    $mo_ta = isset($_POST['mo_ta']) ? strip_tags($_POST['mo_ta']) : "";
+                    $thong_tin = isset($_POST['thong_tin']) ? strip_tags($_POST['thong_tin']) : "";
                     $dac_biet = 0;
                     $promote = 1;
                     date_default_timezone_set('Asia/Ho_Chi_Minh');
@@ -147,8 +147,7 @@ if (isset($_SESSION['idadmin'])) {
                     }
             
                     if (!$error) {
-                        $is_updated = product_update($idproduct, $tensp, $don_gia, $so_luong, $image_list, $giam_gia, $dac_biet, $date_create, $mo_ta, $thong_tin, $ma_danhmuc, $id_dmphu, $promote);
-                        if ($is_updated) {
+                        $is_updated = product_update($idproduct, $tensp, $don_gia, $so_luong, $image_list, $giam_gia, $dac_biet, $date_create, $mo_ta, $ma_danhmuc, $id_dmphu, $information, $promote);                        if ($is_updated) {
                             $result = array(
                                 "status" => 1,
                                 "content" => "Cập nhật sản phẩm thành công!",
@@ -194,14 +193,15 @@ if (isset($_SESSION['idadmin'])) {
                     }
 
                     $tensp = $_POST['tensp'];
-                    $ma_danhmuc = $_POST['ma_danhmuc'];
+                    $ma_danhmuc = isset($_POST['ma_danhmuc']) ? (int) $_POST['ma_danhmuc'] : 0;
                     $id_dmphu = $_POST['id_dmphu'];
                     $giam_gia = isset($_POST['giam_gia']) && $_POST['giam_gia'] !== "" ? (float)$_POST['giam_gia'] : null;
                     $don_gia = $_POST['don_gia'];
                     $so_luong = $_POST['so_luong'];
                     // $view = $_POST['view'];
-                    $mo_ta = $_POST['mo_ta'];
-                    $thong_tin = $_POST['thong_tin'];
+                    $mo_ta = isset($_POST['mo_ta']) ? strip_tags($_POST['mo_ta']) : "";
+                    $thong_tin = isset($_POST['thong_tin']) ? strip_tags($_POST['thong_tin']) : "";
+
                     $dac_biet = 0;
                     $promote = 0;
                     date_default_timezone_set('Asia/Ho_Chi_Minh');
@@ -235,7 +235,7 @@ if (isset($_SESSION['idadmin'])) {
                     }
 
                     if (!$error) {
-                        $is_inserted = product_insert($tensp, $don_gia, $so_luong, $image_list, $giam_gia, $dac_biet, $date_create, $mo_ta, $thong_tin, $ma_danhmuc, $id_dmphu, $promote);
+                        $is_inserted = product_insert($tensp, $don_gia, $so_luong, $image_list, $giam_gia, $date_create, $mo_ta, $thong_tin, $ma_danhmuc, $id_dmphu, $promote, $dac_biet);
                         if ($is_inserted) {
                             echo '<div class="p-3 alert alert-success text-center mt-5">Chúc mừng bạn đã thêm mới sản phẩm thành công</div>';
                         }
