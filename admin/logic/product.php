@@ -246,9 +246,7 @@ switch ($_GET['act']) {
         ';
             $row[2] = $sl_ban;
             $row[3] = '<span>' . number_format($product_item['don_gia']) . ' VND</span>';
-            $row[4] = '<span class="badge rounded-pill ' . $is_danger_class . '">' . $product_item['ton_kho'] . '</span>';
-            $row[5] = '<span>' . $product_item['ngay_nhap'] . '</span>';
-            $row[6] = '
+            $row[4] = '
                     <div class="d-flex align-items-center gap-3 fs-6">
                         <a href="javascript:viewDetail(' . $product_item['masanpham'] . ')" class="text-primary"
                             title=""

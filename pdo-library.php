@@ -34,21 +34,23 @@ function pdo_execute($sql)
     return "Successfuly!";
 }
 //truy vấn nhiều dữ liệu
-function pdo_query($sql)
-{
-    $sql_args = array_slice(func_get_args(), 1);
+function pdo_query($sql, ...$params) {
     try {
         $conn = pdo_get_connection();
+        if (!$conn) {
+            throw new Exception("Không thể kết nối đến CSDL");
+        }
+
         $stmt = $conn->prepare($sql);
-        $stmt->execute($sql_args);
-        $rows = $stmt->fetchAll();
-        return $rows;
+        $stmt->execute($params);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
-        throw $e;
-    } finally {
-        unset($conn);
+        error_log("Lỗi truy vấn: " . $e->getMessage());
+        return []; // Trả về mảng rỗng nếu có lỗi
     }
 }
+
+
 //truy vấn 1 dữ liệu
 function pdo_query_one($sql)
 {

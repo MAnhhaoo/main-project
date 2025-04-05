@@ -326,25 +326,27 @@ foreach ($cart_list as $cart_item) {
                                                                         <p>
                                                                             <span>Sl <strong>:</strong></span>' . $cart_item['sl'] . '
                                                                         </p>
-                                                                        <p>
-                                                                            <span>Giá <strong>:</strong></span> ' . $price_item . ' VND
-                                                                        </p>
+                                                                      
                                                                     </div>
                                                                 </div>
                                                             ';
     $i++;
 }
 ?>
+
+<!-- Giá sản phẩm  -->
+
+<!--   <p>
+                                                                            <span>Giá <strong>:</strong></span> ' . $price_item . ' VND
+                                                                        </p> -->
+
+
+
+
+
                                                     </div>
                                                 </li>
-                                                <li>
-                                                    <div class="top-cart-inner subtotal">
-                                                        <h4 class="text-uppercase g-font-2">
-                                                            Tổng tiền =
-                                                            <span><?php echo number_format($total_cart); ?>VND</span>
-                                                        </h4>
-                                                    </div>
-                                                </li>
+                                               
                                                 <li>
                                                     <div class="top-cart-inner view-cart">
                                                         <h4 class="text-uppercase">
