@@ -49,7 +49,7 @@ switch ($_GET['act']) {
         // $view = $_POST['view'];
         $mo_ta = $_POST['mo_ta'];
         $thong_tin = $_POST['thong_tin'];
-        $dac_biet = 0;
+        $dac_biet = $_POST['dac_biet'];
         $promote = 1;
         date_default_timezone_set('Asia/Ho_Chi_Minh');
         $date_create = date('Y-m-d H:i:s');

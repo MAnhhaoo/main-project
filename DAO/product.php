@@ -21,16 +21,48 @@ function product_delete($ma_sanpham)
 
 }
 
-function product_update($masanpham, $tensp, $don_gia, $ton_kho, $images, $giam_gia, $dac_biet = 0, $ngay_nhap, $mo_ta, $ma_danhmuc, $id_dmphu, $information, $promote)
+function product_update($masanpham, $tensp, $don_gia, $ton_kho, $images, $giam_gia, $dac_biet, $ngay_nhap, $mo_ta, $information, $ma_danhmuc, $id_dmphu, $promote)
 {
     $sql = "UPDATE tbl_sanpham 
-            SET tensp=?, don_gia=?, ton_kho=?, images=?, giam_gia=?, dac_biet=?, ngay_nhap=?, mo_ta=?, ma_danhmuc=?, id_dmphu=?, information=?, promote=?
-            WHERE masanpham=?";
-    
-    pdo_execute($sql, $tensp, $don_gia, $ton_kho, $images, $giam_gia, $dac_biet, $ngay_nhap, $mo_ta, $ma_danhmuc, $id_dmphu, $information, $promote, $masanpham);
-    
-    return true;
+            SET 
+                tensp = ?, 
+                don_gia = ?, 
+                ton_kho = ?, 
+                images = ?, 
+                giam_gia = ?, 
+                dac_biet = ?, 
+                ngay_nhap = ?, 
+                mo_ta = ?, 
+                ma_danhmuc = ?, 
+                id_dmphu = ?, 
+                information = ?, 
+                promote = ?
+            WHERE masanpham = ?";
+
+    try {
+        pdo_execute($sql,
+            $tensp,         // 1
+            $don_gia,       // 2
+            $ton_kho,       // 3
+            $images,        // 4
+            $giam_gia,      // 5
+            $dac_biet,      // 6
+            $ngay_nhap, // 7
+            $mo_ta,         // 7
+            $ma_danhmuc,    // 8
+            $id_dmphu,      // 9
+            $information,   // 10
+            $promote,       // 11
+            $masanpham      // 12 (WHERE)
+        );
+
+        return true;
+    } catch (Exception $e) {
+        error_log("Error updating product with masanpham $masanpham: " . $e->getMessage());
+        return false;
+    }
 }
+
 
 function product_update_quantity($masanpham, $ton_kho)
 {

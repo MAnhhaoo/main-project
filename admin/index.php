@@ -79,89 +79,89 @@ if (isset($_SESSION['idadmin'])) {
                     $error = array();
                     $idproduct = $_POST['id'];
                     $product_item = product_select_by_id($idproduct);
-                    // if (isset($_POST['editproductbtn']) && $_POST['editproductbtn']) {
+                
+                    // Xử lý hình ảnh
                     $image_files = $_FILES['images'];
-                    if ($_FILES['images']['name'][0] == "") {
-                        $image_list = $product_item['images'];
+                    if (empty($image_files['name'][0])) {
+                        $image_list = $product_item['images']; // Giữ nguyên hình ảnh cũ nếu không có hình mới
                     } else {
                         $image_list = implode(',', $image_files['name']);
-                        // var_dump($image_files);
-                        // var_dump($image_list);
                         $i = 0;
                         foreach ($image_files['name'] as $image_name) {
-                            # code...
-                            // $target_file = "../uploads/" . basename($file_name);
-                            // var_dump($image_file_item);
                             move_uploaded_file($image_files["tmp_name"][$i], "$ROOT_URL/uploads/" . $image_name);
                             $i++;
                         }
                     }
-                    // var_dump($image_list);
-                    // exit;
-            
+                
+                    // Lấy dữ liệu từ form
                     $tensp = $_POST['tensp'];
-                    $ma_danhmuc = $_POST['ma_danhmuc'];
+                    $ma_danhmuc = isset($_POST['ma_danhmuc']) ? (int) $_POST['ma_danhmuc'] : 0;
                     $id_dmphu = $_POST['id_dmphu'];
-                    $giam_gia = isset($productItem['giam_gia']) ? $productItem['giam_gia'] : 0;
+                    $giam_gia = isset($_POST['giam_gia']) && $_POST['giam_gia'] !== "" ? (float)$_POST['giam_gia'] : null;
                     $don_gia = $_POST['don_gia'];
                     $so_luong = $_POST['so_luong'];
                     // $view = $_POST['view'];
                     $mo_ta = isset($_POST['mo_ta']) ? strip_tags($_POST['mo_ta']) : "";
                     $thong_tin = isset($_POST['thong_tin']) ? strip_tags($_POST['thong_tin']) : "";
-                    $dac_biet = 0;
+                    $so_luot_xem = $_POST['so_luot_xem'];
+                    $dac_biet = $_POST['dac_biet'];
                     $promote = 1;
                     date_default_timezone_set('Asia/Ho_Chi_Minh');
                     $date_create = date('Y-m-d H:i:s');
-                    // Validate at server
-            
-                    // Validate server here !!!
-                    if (strlen($tensp) == 0) {
+                    
+                    // Validate dữ liệu
+                    if (empty($tensp)) {
                         $error['product-name'] = "Không để trống tên sản phẩm!";
                     }
-                    if (!is_numeric($ma_danhmuc)) {
-                        $error['cate'] = "Không để trống mã danh mục!";
+                    if (!is_numeric($ma_danhmuc) || $ma_danhmuc <= 0) {
+                        $error['cate'] = "Mã danh mục không hợp lệ!";
                     }
-            
-                    if (!is_numeric($id_dmphu)) {
-                        $error['subcate'] = "Không để trống mã danh mục phụ";
+                    if (!is_numeric($id_dmphu) || $id_dmphu <= 0) {
+                        $error['subcate'] = "Mã danh mục phụ không hợp lệ!";
                     }
-            
                     if (empty($mo_ta)) {
-                        $error['desc'] = "Không để trống mô tả sản phẩm";
+                        $error['desc'] = "Không để trống mô tả sản phẩm!";
                     }
-            
                     if (empty($thong_tin)) {
-                        $error['info'] = "Không để trống thông tin sản phẩm";
+                        $error['info'] = "Không để trống thông tin sản phẩm!";
                     }
-            
-                    if (empty($don_gia)) {
-                        $error['price'] = "không để trống đơn giá";
-                    } else if ($don_gia < 0) {
+                    if (empty($don_gia) || !is_numeric($don_gia)) {
+                        $error['price'] = "Đơn giá không hợp lệ!";
+                    } elseif ($don_gia < 0) {
                         $error['price'] = "Đơn giá phải lớn hơn 0!";
                     }
-            
-                    if ($giam_gia == "" || $giam_gia == null) {
-                        $giam_gia = 0;
-                    } else if ($giam_gia < 0 || $giam_gia > 100) {
-                        $error['discount'] = "Giảm giá phải lớn hơn hoặc bằng 0 và nhỏ hơn bằng 100";
+                    if (!is_numeric($so_luong) || $so_luong < 0) {
+                        $error['quantity'] = "Số lượng phải lớn hơn hoặc bằng 0!";
                     }
-            
-                    if (!$error) {
-                        $is_updated = product_update($idproduct, $tensp, $don_gia, $so_luong, $image_list, $giam_gia, $dac_biet, $date_create, $mo_ta, $ma_danhmuc, $id_dmphu, $information, $promote);                        if ($is_updated) {
+                    if ($giam_gia < 0 || $giam_gia > 100) {
+                        $error['discount'] = "Giảm giá phải từ 0 đến 100!";
+                    }
+                
+                    // Nếu không có lỗi, gọi hàm product_update
+                    if (empty($error)) {
+                        $is_updated = product_update($idproduct ,$tensp, $don_gia, $so_luong, $image_list, $giam_gia, $dac_biet, $date_create, $mo_ta, $thong_tin, $ma_danhmuc, $id_dmphu, $promote);
+                
+                        if ($is_updated) {
                             $result = array(
                                 "status" => 1,
                                 "content" => "Cập nhật sản phẩm thành công!",
                             );
-                            echo json_encode($result);
+                        } else {
+                            $result = array(
+                                "status" => 0,
+                                "content" => "Cập nhật sản phẩm thất bại!",
+                                "error" => "Lỗi không xác định khi cập nhật sản phẩm."
+                            );
                         }
                     } else {
                         $result = array(
                             "status" => 0,
-                            "content" => "Cập nhật sản phẩm thất bại",
+                            "content" => "Cập nhật sản phẩm thất bại!",
                             "error" => $error,
                         );
-                        echo json_encode($result);
                     }
+                
+                    echo json_encode($result);
                     break;
 
             case 'addproduct':
