@@ -1,3 +1,4 @@
+
 <?php
 if (!function_exists('updateorderstatus')) {
 function updateorderstatus($iddh, $trangthai)
@@ -227,4 +228,3 @@ function select_all_coupons()
     return pdo_query($sql);
 
 }
-

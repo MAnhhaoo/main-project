@@ -33,7 +33,7 @@ foreach ($lis_slider_new as $slider) {
 
             </div>
         </div>
-    </div>
+    </div>  
 </div>
 <!-- END SLIDER AREA -->
 
@@ -444,7 +444,7 @@ foreach ($product_list as $item) {
     $addcartfunc = "handleAddCart('addtocart', 'addcart')";
     $addwishlistfunc = "handleAddCart('addtowishlist', 'addwishlist')";
     $avg_stars = avg_star_reviews_of_product($item['masanpham']);
-    $result_stars = renderStarRatings(round($avg_stars, 0));
+    $result_stars = renderStarRatings(round(4.6, 0));
     foreach ($image_list as $image_item) {
 
         if (substr($image_item, 0, 6) == "thumb-") {
@@ -578,7 +578,7 @@ foreach ($top_sold_products as $item) {
     $addwishlistfunc = "handleAddCart('addtowishlist', 'addwishlist')";
     $cate_name = catename_select_by_id($item['ma_danhmuc'])['ten_danhmuc'];
     $avg_stars = avg_star_reviews_of_product($item['masanpham']);
-    $result_stars = renderStarRatings(round($avg_stars, 0));
+    $result_stars = renderStarRatings(round(4.6, 0));
     // foreach ($image_list as $image_item) {
 
     //     if (substr($image_item, 0, 6) == "thumb-") {
@@ -715,7 +715,7 @@ foreach ($product_list as $item) {
     $addcartfunc = "handleAddCart('addtocart', 'addcart')";
     $addwishlistfunc = "handleAddCart('addtowishlist', 'addwishlist')";
     $avg_stars = avg_star_reviews_of_product($item['masanpham']);
-    $result_stars = renderStarRatings(round($avg_stars, 0));
+    $result_stars = renderStarRatings(round(4.6, 0));
     foreach ($image_list as $image_item) {
 
         if (substr($image_item, 0, 6) == "thumb-") {

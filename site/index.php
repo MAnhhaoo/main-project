@@ -41,6 +41,7 @@ include "../DAO/blog.php";
 include "../DAO/order.php";
 include "../DAO/feedback.php";
 
+
 // Model to connect database
 include "./models/connectdb.php";
 include "./models/sanpham.php";
@@ -122,6 +123,32 @@ if (isset($_GET['act'])) {
             }
 
             break;
+            case 'timkiem':
+                $kyw = isset($_GET['kyw']) ? trim($_GET['kyw']) : "";
+                $kyw = $kyw !== "" ? $kyw : null;
+                
+                $iddm = isset($_GET['cateid']) && $_GET['cateid'] !== '' ? intval($_GET['cateid']) : 0;
+                $price_min = isset($_GET['price-min']) && $_GET['price-min'] !== '' ? doubleval($_GET['price-min']) : 0;
+                $price_max = isset($_GET['price-max']) && $_GET['price-max'] !== '' ? doubleval($_GET['price-max']) : PHP_INT_MAX;
+                
+                $page = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1; // Đảm bảo page >= 1
+                $soluongsp = isset($_GET['soluong']) ? max(1, intval($_GET['soluong'])) : 12; // Đảm bảo số lượng hợp lệ
+                
+                // Tính offset cho truy vấn SQL
+                $offset = ($page - 1) * $soluongsp;
+                
+                // Lấy danh sách sản phẩm theo điều kiện tìm kiếm và có phân trang
+                $dssp = loadall_sanpham_timkiem($kyw, $iddm, $price_min, $price_max, $soluongsp, $offset) ?? [];
+                
+                // Lấy tổng số sản phẩm (không giới hạn phân trang)
+               
+            
+                include "./view/pages/shop/shop.php"; // Hiển thị kết quả tìm kiếm
+                break;
+            
+            
+            
+                
         case 'deletecart':
             if (isset($_SESSION['giohang']) && count($_SESSION['giohang']) > 0) {
                 // template này có thể phải nhớ !!!

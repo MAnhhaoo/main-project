@@ -164,4 +164,3 @@ $(document).ready(function () {
     CKEDITOR.replace( 'descriptionProductEditor' );
     CKEDITOR.replace( 'infoProductEditor' );
 });
-
