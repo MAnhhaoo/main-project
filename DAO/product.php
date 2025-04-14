@@ -1,11 +1,24 @@
 <?php
 
+
+
 function product_insert($tensp, $don_gia, $ton_kho, $images, $giam_gia, $ngay_nhap, $mo_ta, $thong_tin, $ma_danhmuc, $id_dmphu, $promote, $dac_biet = 0)
 {
     $sql = "INSERT INTO tbl_sanpham (tensp, don_gia, ton_kho, images, giam_gia, dac_biet, ngay_nhap, mo_ta, information, ma_danhmuc, id_dmphu, promote) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
     pdo_execute($sql, $tensp, $don_gia, $ton_kho, $images, $giam_gia, $dac_biet, $ngay_nhap, $mo_ta, $thong_tin, $ma_danhmuc, $id_dmphu, $promote);
     return true;
 }
+
+function product_toggle($id_list) {
+    $conn = connectdb();
+    foreach ($id_list as $id) {
+        $sql = "UPDATE tbl_sanpham SET is_hidden = 1 - is_hidden WHERE masanpham = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$id]);
+    }
+    return true;
+}
+
 
 function product_delete($ma_sanpham)
 {
@@ -17,8 +30,52 @@ function product_delete($ma_sanpham)
     } else {
         pdo_execute($sql, $ma_sanpham);
         return true;
+    }   
+
+}
+function isProductSold($product_id) {
+    $conn = connectdb();
+    $sql = "SELECT COUNT(*) FROM tbl_order_detail WHERE idsanpham = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$product_id]);
+    $count = $stmt->fetchColumn();
+
+    // Gỡ lỗi:
+    echo "<script>console.log('Sản phẩm #$product_id đã được mua $count lần');</script>";
+
+    return $count > 0;
+}
+function deleteProduct($product_id) {
+    $conn = connectdb();
+    $sql = "DELETE FROM tbl_sanpham WHERE masanpham = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$product_id]);
+}
+
+
+
+
+
+
+
+
+
+
+
+function product_toggle_visibility($ma_sanpham, $hide = true)
+{
+    $sql = "UPDATE tbl_sanpham SET is_visible = ? WHERE masanpham = ?";
+    $new_status = $hide ? 0 : 1;
+
+    if (is_array($ma_sanpham)) {
+        foreach ($ma_sanpham as $ma) {
+            pdo_execute($sql, $new_status, $ma);
+        }
+    } else {
+        pdo_execute($sql, $new_status, $ma_sanpham);
     }
 
+    return true;
 }
 
 function product_update($masanpham, $tensp, $don_gia, $ton_kho, $images, $giam_gia, $dac_biet, $ngay_nhap, $mo_ta, $information, $ma_danhmuc, $id_dmphu, $promote)

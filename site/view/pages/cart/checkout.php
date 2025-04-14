@@ -575,12 +575,16 @@ if (isset($_SESSION['giohang']) && $_SESSION['giohang'] > 0) {
                                                     <h6 class="widget-title border-left mb-20">Phương thức thanh toán
                                                     </h6>
                                                     <div id="accordion">
-                                                        <div class="panel">
-                                                            <h4 class="payment-title box-shadow ">
-                                                                <a data-bs-toggle="collapse" href="#codPayment">
-                                                                    Thanh toán trực tiếp tại nhà
-                                                                </a>
-                                                            </h4>
+                                                        <div class="panel " >
+                                                        <h4 class="payment-title box-shadow <?php if (isset($curr_user) && $curr_user['default_payment'] == "codpayment") echo "show"; ?>">
+    <label class="d-flex align-items-center" style="cursor: pointer;">
+        <input type="radio" name="payment_method" value="codpayment"
+            <?php if (isset($curr_user) && $curr_user['default_payment'] == "codpayment") echo "checked"; ?>
+            class="me-2">
+        Thanh toán trực tiếp tại nhà
+    </label>
+</h4>
+
                                                             <div id="codPayment"
                                                                 class="panel-collapse collapse <?php if (isset($curr_user) && $curr_user['default_payment'] == "codpayment") {echo "show";}?>"
                                                                 data-bs-parent="#accordion">
@@ -597,34 +601,14 @@ if (isset($_SESSION['giohang']) && $_SESSION['giohang'] > 0) {
                                                                 </a>
                                                             </h4>
                                                             <div id="momoPayment"
-                                                                class="panel-collapse collapse <?php if (isset($curr_user) && $curr_user['default_payment'] == "momopayment") {echo "show";}?>"
+                                                                class="panel-collapse collapse
                                                                 data-bs-parent="#accordion">
                                                                 <div class="payment-content">
                                                                     <p>Thanh toán đơn giản, tiện lợi qua momo</p>
                                                                 </div>
                                                             </div>
                                                         </div> -->
-                                                        <div class="panel">
-                                                            <h4 class="payment-title box-shadow">
-                                                                <a data-bs-toggle="collapse" href="#vnpayPayment">
-                                                                    Thanh toán VNpay
-                                                                </a>
-                                                            </h4>
-                                                            <div id="vnpayPayment"
-                                                                class="panel-collapse collapse <?php if (isset($curr_user) && $curr_user['default_payment'] == "vnpaypayment") {echo "show";}?>"
-                                                                data-bs-parent="#accordion">
-                                                                <div class="payment-content">
-                                                                    <!-- <a href="./index.php?act=vnpaypayment"
-                                                                        class="btn btn-outline-warning">Thanh
-                                                                        Toán VNPAY</a> -->
-                                                                    <!-- <input class="btn btn-outline-warning" type="submit"
-                                                                        name="vnpaybtn" value="Thanh toán VNPAY"> -->
 
-                                                                    Thanh toán đơn giản, tiện lợi, hiệu quả, an toàn qua
-                                                                    vnpay
-                                                                </div>
-                                                            </div>
-                                                        </div>
                                                     </div>
                                                 </div>
                                                 <!-- payment-method end -->

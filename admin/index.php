@@ -46,22 +46,69 @@ if (isset($_SESSION['idadmin'])) {
                 include "./view/pages/products/product-list.php";
                 break;
 
-            case 'deleteproduct':
-                if (isset($_GET['id'])) {
-                    $is_deleted = product_delete($_GET['id']);
-                    if ($is_deleted) {
-                        echo '
-                        <script>
-                            // <div class="alert alert-danger">Bạn đã xóa sản phẩm #' . $_GET['id'] . ' thành công</div>
-                            document.addEventListener("DOMContentLoaded", (event) => {
-                                showToast("Xóa sản phẩm", "Chúc mừng bạn đã Xóa sản phẩm #' . $_GET['id'] . ' thành công");
-                            });p
-                        </script>
-                    ';
+                case 'deleteproduct':
+                    if (isset($_GET['id'])) {
+                        $product_id = $_GET['id'];
+                
+                        if (isProductSold($product_id)) {
+                            echo '
+                            <script>
+                                document.addEventListener("DOMContentLoaded", () => {
+                                    showToast("Không thể xoá", "Sản phẩm #' . $product_id . ' đã được bán và không thể xoá.");
+                                });
+                            </script>
+                            ';
+                        } else {
+                            deleteProduct($product_id);
+                            echo '
+                            <script>
+                                document.addEventListener("DOMContentLoaded", () => {
+                                    showToast("Xoá thành công", "Sản phẩm #' . $product_id . ' đã được xoá khỏi hệ thống.");
+                                });
+                            </script>
+                            ';
+                        }
                     }
-                }
-                include "./view/pages/products/product-list.php";
-                break;
+                    include "./view/pages/products/product-list.php";
+                    break;
+                
+                
+                
+                
+                                
+
+    
+    case 'toggle_visibility':
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $conn = connectdb();
+            
+            // Lấy trạng thái hiện tại
+            $stmt = $conn->prepare("SELECT is_visible FROM tbl_sanpham WHERE masanpham = ?");
+            $stmt->execute([$id]);
+            $current = $stmt->fetchColumn();
+            
+            // Đảm bảo rằng trạng thái hiện tại là hợp lệ (0 hoặc 1)
+            if ($current !== false) {
+                // Đảo trạng thái
+                $new_status = ($current == 1) ? 0 : 1;
+                $stmt = $conn->prepare("UPDATE tbl_sanpham SET is_visible = ? WHERE masanpham = ?");
+                $stmt->execute([$new_status, $id]);
+    
+                echo '
+                    <script>
+                        document.addEventListener("DOMContentLoaded", () => {
+                            showToast("Cập nhật", "Trạng thái sản phẩm #' . $id . ' đã được cập nhật.");
+                        });
+                    </script>
+                ';
+            } else {
+                echo '<script> alert("Không tìm thấy sản phẩm."); </script>';
+            }
+        }
+        include "./view/pages/products/product-list.php";
+        break;
+    
 
             case 'deleteproducts':
                 if (isset($_POST['idCheckedList'])) {
@@ -74,7 +121,26 @@ if (isset($_SESSION['idadmin'])) {
                     include "./view/product/listproduct-page.php";
                 }
                 break;
-
+                case 'toggle-product':
+                    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                        $masp = isset($_POST['masanpham']) ? (int)$_POST['masanpham'] : 0;
+                        $danhgia = isset($_POST['danhgia']) ? (int)$_POST['danhgia'] : 0;
+                
+                        $new_status = $danhgia == 1 ? 0 : 1;
+                
+                        $conn = connectdb();
+                        $stmt = $conn->prepare("UPDATE tbl_sanpham SET danhgia = :danhgia WHERE masanpham = :masp");
+                        $stmt->execute([
+                            ':danhgia' => $new_status,
+                            ':masp' => $masp
+                        ]);
+                
+                        echo "Đã cập nhật sản phẩm $masp - trạng thái mới: $new_status";
+                        // header("Location: index.php?act=productlist");
+                        exit();
+                    }
+                    break;
+                
                 case 'editproduct':
                     $error = array();
                     $idproduct = $_POST['id'];

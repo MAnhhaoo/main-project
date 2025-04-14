@@ -81,9 +81,7 @@ switch ($_GET['act']) {
             $error['price'] = "Đơn giá phải lớn hơn 0!";
         }
 
-        if (empty($giam_gia)) {
-            $error['discount'] = "Không để trống giảm giá";
-        } else if ($giam_gia < 0 || $giam_gia > 100) {
+         if ($giam_gia < 0 || $giam_gia > 100) {
             $error['discount'] = "Giảm giá phải lớn hơn hoặc bằng 0 và nhỏ hơn bằng 100";
         }
 

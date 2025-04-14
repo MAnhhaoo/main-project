@@ -76,21 +76,25 @@ $conn = connectdb();
 
 // }
 
-$sql = "SELECT * FROM tbl_sanpham"; // Total Product
+$sql = "SELECT * FROM tbl_sanpham WHERE is_visible = 1"; // Lọc chỉ những sản phẩm có is_visible = 1
+$_limit = 8;
+$pagination = createDataWithPagination($conn, $sql, $_limit);
+$product_list = $pagination['datalist'];
+// Total Product
 
 if (isset($_GET['subcateid'])) {
     $subcate_id = $_GET['subcateid'];
-    $sql = "SELECT * FROM tbl_sanpham where id_dmphu = '$subcate_id'";
+    $sql = "SELECT * FROM tbl_sanpham where id_dmphu = '$subcate_id' AND is_visible = 1" ;
     // echo "$sql";
 }
 
 if (isset($_GET['cateid'])) {
     $cate_id = $_GET['cateid'];
-    $sql = "SELECT * FROM tbl_sanpham where ma_danhmuc = '$cate_id'";
+    $sql = "SELECT * FROM tbl_sanpham where ma_danhmuc = '$cate_id'AND is_visible = 1";
 }
 if (isset($_GET['query'])) {
     $query = $_GET['query'];
-    $sql = "SELECT * FROM tbl_sanpham where tensp like '%$query%'";
+    $sql = "SELECT * FROM tbl_sanpham where tensp like '%$query%'AND is_visible = 1";
     // echo $sql;
 }
 
@@ -119,7 +123,7 @@ if (isset($_GET['minprice']) && $_GET['minprice'] != 0 && isset($_GET['maxprice'
     $min_price = $_GET['minprice'];
     $max_price = $_GET['maxprice'];
 
-    $sql = "SELECT * FROM tbl_sanpham where don_gia between '$min_price' and '$max_price'";
+    $sql = "SELECT * FROM tbl_sanpham where don_gia between '$min_price' and '$max_price'AND is_visible = 1";
     // echo $sql;
 }
 
@@ -219,6 +223,11 @@ $search_active = isset($_GET['act']) && $_GET['act'] === 'timkiem' && (!empty($_
 
 $product_data = $search_active ? $dssp : $product_list;
 
+// Lọc sản phẩm có is_visible = 1
+$product_data = array_filter($product_data, function($product) {
+    return $product['is_visible'] == 1;  // Chỉ lấy sản phẩm có is_visible = 1
+});
+
 if (!empty($product_data)): ?>
     <div class="product-list row">
         <?php foreach ($product_data as $product): ?>
@@ -260,6 +269,7 @@ if (!empty($product_data)): ?>
 <?php else: ?>
     <p>Không có sản phẩm nào phù hợp.</p>
 <?php endif; ?>
+
 
 
 
@@ -409,7 +419,6 @@ if ($current_page < $total_page && $total_page > 1) {
 
     <label for="cateid" style="font-size: 17px;"><b>Danh mục</b></label>
     <select id="cateid" name="cateid" style="font-size: 17px; height: 35px;">
-        <option value="0">Chọn loại</option>
         <?php 
             $cate_list = cate_select_all();
             $selected_cate = isset($_GET['cateid']) ? intval($_GET['cateid']) : 0;

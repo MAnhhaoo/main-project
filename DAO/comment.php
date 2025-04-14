@@ -1,5 +1,7 @@
 <?php
 
+
+
 function comment_insert($iduser, $masanpham, $noidung, $ngay_binhluan)
 {
     $sql = "INSERT INTO tbl_binhluan(ma_nguoidung, ma_sanpham, noi_dung, ngay_binhluan) VALUES (?,?,?,?)";
